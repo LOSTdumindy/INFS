@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Welcome to TableTap{% endblock %}
+{% block page_header %}Welcome to TableTap{% endblock %}
+
+{% block content %}
+<div class="row text-center">
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">View Menu</h5>
+                <p class="card-text">Browse the restaurant's digital menu.</p>
+                <a href="{% url 'menu:menu' %}" class="btn btn-primary">Go to Menu</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Cart</h5>
+                <p class="card-text">View and manage your cart items.</p>
+                <a href="{% url 'cart:view_cart' %}" class="btn btn-success">View Cart</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Dashboard</h5>
+                <p class="card-text">Manage orders and view activity.</p>
+                <a href="/order/dashboard/" class="btn btn-dark">Go to Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

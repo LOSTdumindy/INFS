@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Cart{% endblock %}
+
+{% block page_header %}Your Cart{% endblock %}
+
+{% block content %}
+{% if items %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.menu_item.name }}</td>
+                <td>
+                    <form method="POST" action="{% url 'cart:update_quantity' item.id %}">
+                        {% csrf_token %}
+                        <input type="number" name="quantity" value="{{ item.quantity }}" min="1">
+                        <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                    </form>
+                </td>
+                <td>${{ item.menu_item.price }}</td>
+                <td>${{ item.total_price }}</td>
+                <td>
+                    <form method="POST" action="{% url 'cart:remove_from_cart' item.id %}">
+                        {% csrf_token %}
+                        <button class="btn btn-danger btn-sm">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <p><strong>Total:</strong> ${{ cart_total }}</p>
+    <form method="POST" action="{% url 'orders:place_order' %}?table={{ table.code }}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Place Order</button>
+    </form>
+    
+    
+{% else %}
+    <p>Your cart is empty.</p>
+{% endif %}
+{% endblock %}

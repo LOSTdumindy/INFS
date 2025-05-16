@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block page_header %}Dashboard{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-header">Today's Stats</div>
+            <div class="card-body">
+                <p><strong>Orders Today:</strong> {{ orders_today }}</p>
+                <p><strong>Revenue:</strong> ${{ revenue }}</p>
+                <p><strong>Avg Order:</strong> ${{ avg_order }}</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">Popular Items</div>
+            <ul class="list-group list-group-flush">
+                {% for item in popular_items %}
+                    <li class="list-group-item">{{ item.name }} ({{ item.count }}x)</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">Active Orders</div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th><th>Table</th><th>Items</th><th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in active_orders %}
+                        <tr>
+                            <td>#{{ order.id }}</td>
+                            <td>{{ order.table.number }}</td>
+                            <td>
+                                {% for item in order.items.all %}
+                                    {{ item.menu_item.name }} (x{{ item.quantity }})<br>
+                                {% endfor %}
+                            </td>
+                            <td>{{ order.status }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
