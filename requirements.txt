@@ -1,16 +1,20 @@
 asgiref==3.8.1
 certifi==2025.4.26
+cffi==1.17.1
 charset-normalizer==3.4.2
+cryptography==45.0.2
 Django==5.2.1
+django-allauth==65.8.1
 django-jazzmin @ git+https://github.com/farridav/django-jazzmin.git@d269874c96fe5ff6d231c3017cdd4650bc2f3105
 django-phonenumber-field==8.1.0
 django-resized==1.0.3
-gunicorn==23.0.0
 idna==3.10
-packaging==25.0
 phonenumbers==9.0.5
 pillow==11.2.1
+pycparser==2.22
+PyJWT==2.10.1
 qrcode==8.2
+qrcodes==0.1
 requests==2.32.3
 sqlparse==0.5.3
 typing_extensions==4.13.2
