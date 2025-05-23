@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load socialaccount %}
 {% load static %}
 {% block title %}Login{% endblock title %}
 {% block content %}
@@ -15,6 +16,9 @@
         <small> <a href=" {% url 'users:password_reset' %} "> Forgot Password ?</a> </small> <br>
         <input type="submit" class = "btn btn-primary mt-4" value = "Login">
         <br>
+        
+        <h3>Or login with</h3>
+<a href="{% provider_login_url 'google' %}">Google</a><br>
         <div class="text-center text-primary fw-bold"> <small> <a href=" {% url 'users:register' %} ">New To website ?</a> </small></div>
         
         {% if form.non_field_errors %}

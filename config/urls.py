@@ -7,6 +7,7 @@ urlpatterns = [
 
     # Core features
     path('', include('core.urls')),
+    path('accounts/', include('allauth.urls')),
 
     # Auth routes
     path('login/', auth_views.LoginView.as_view(template_name='app/login.html'), name='login'),

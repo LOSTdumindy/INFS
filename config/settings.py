@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-dmuig4%yv%ggdc^ahy0+dy8iuk^qevr*9(#4f@ate4_#^jp_fl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['infs.onrender.com']
+ALLOWED_HOSTS = ['infs.onrender.com',
+                '127.0.0.1'
+]
 
 
 AUTH_USER_MODEL = 'users.User'
@@ -45,12 +47,19 @@ INSTALLED_APPS = [
     'django.contrib.auth', 
     'django.contrib.contenttypes', 
     'django.contrib.admin', 
+    'django.contrib.sites', 
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
     
 ]
 
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/order/dashboard/'
+LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -151,3 +161,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend", 
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
